@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAtk : MonoBehaviour
+public class NormalAtk : CheckRangeAtk
 {
     [SerializeField] protected GameObject _bulletPrefab; 
     [SerializeField] protected float _atkSpeed;
-    [SerializeField] protected float _atkRange;
-    [SerializeField] protected LayerMask _enemyLayer; 
+    
 
     protected float countDownAtk;
 
@@ -23,12 +22,15 @@ public class NormalAtk : MonoBehaviour
         if(countDownAtk > 0)
             return;
 
-        GameObject enemy = FindNearestEnemy();
+        GameObject enemy = FindNearestEnemy(this.transform.position);
         if(enemy != null)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, this.transform.position, Quaternion.identity);
+            GameObject bullet = ObjectPooling.Instance.GetObject(_bulletPrefab.gameObject);
+            bullet.transform.position = this.transform.position;
+            bullet.SetActive(true);
             Vector2 dir = enemy.transform.position - this.transform.position;
-
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             BulletMove bulletMove = bullet.GetComponent<BulletMove>();
             if (bulletMove != null)
             {
@@ -39,27 +41,7 @@ public class NormalAtk : MonoBehaviour
         }
     }
 
-    protected GameObject FindNearestEnemy()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, _atkRange, _enemyLayer);
+    
 
-        GameObject enemy = null;
-        float shortestDis = Mathf.Infinity;
-        foreach(Collider2D hit in hits)
-        {
-            float distance = Vector2.Distance(this.transform.position, hit.transform.position);
-            if(distance < shortestDis)
-            {
-                shortestDis = distance;
-                enemy = hit.gameObject;
-            }
-        }
-        return enemy;
-    }
-
-    protected void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _atkRange);
-    }
+    
 }

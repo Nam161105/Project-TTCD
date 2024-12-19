@@ -5,31 +5,40 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] protected float _speed;
-    protected Rigidbody2D _rigidbody;
+    protected Rigidbody2D _rigi;
+    protected Animator _animator;
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigi = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        this.RotateMoveToPlayer();
+        this.MoveToPlayer();
+        this.Turning();
     }
 
-    protected void RotateMoveToPlayer()
+    protected void MoveToPlayer()
     {
-        Quaternion rot = transform.rotation;
         Vector2 distance = GameManager.insantce.Player.transform.position - this.transform.position;
-        if (distance.sqrMagnitude < 0.5f)
-        {
-            _rigidbody.velocity = Vector2.zero;
-            return;
-        }
-        float dir = Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg - 90;
-        rot.eulerAngles = new Vector3(0, 0, dir);
-        transform.rotation = rot;
 
-        _rigidbody.velocity = this.transform.up * _speed;
+        _rigi.velocity = distance * _speed;
+        _animator.SetBool("Run", false);
+
+    }
+
+    protected void Turning()
+    {
+        float distance = GameManager.insantce.Player.transform.position.x - this.transform.position.x;
+        if(distance > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if(distance < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
 }
