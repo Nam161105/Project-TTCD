@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
     protected static GameManager Instance;
     public static GameManager insantce => Instance;
 
-    [SerializeField] protected GameObject _player, enemyPrefab;
+    [SerializeField] protected GameObject _player;
+    [SerializeField] protected List<GameObject> _enemyPrefab = new List<GameObject>();
     public GameObject Player => _player;
-    public GameObject EnemyPrefab => enemyPrefab;
+    
 
     [SerializeField] protected int _minRandom;
     [SerializeField] protected int _maxRandom;
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        GameObject enemy = ObjectPooling.Instance.GetObject(enemyPrefab.gameObject);
+        GameObject enemy = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
         enemy.transform.position = newPos;
         enemy.SetActive(true);
     }

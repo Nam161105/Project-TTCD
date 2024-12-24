@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyTakeDmg : MonoBehaviour, IDameage
 {
     [SerializeField] protected float maxHp;
     [SerializeField] protected float currentHp;
-
 
     private void OnEnable()
     {
@@ -22,8 +21,13 @@ public class EnemyTakeDmg : MonoBehaviour, IDameage
         currentHp -= dame;
         if (currentHp <= 0)
         {
-            Debug.Log("Enemy die");
-            this.gameObject.SetActive(false);
+            Die();
         }
+    }
+
+    protected void Die()
+    {
+        ExpManager.Instance.LevelSystem();
+        this.gameObject.SetActive(false);
     }
 }

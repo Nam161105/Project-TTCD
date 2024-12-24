@@ -26,6 +26,7 @@ public class NormalAtk : CheckRangeAtk
         if(enemy != null)
         {
             GameObject bullet = ObjectPooling.Instance.GetObject(_bulletPrefab.gameObject);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.fireClip);
             bullet.transform.position = this.transform.position;
             bullet.SetActive(true);
             Vector2 dir = enemy.transform.position - this.transform.position;

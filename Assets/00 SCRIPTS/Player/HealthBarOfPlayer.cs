@@ -7,12 +7,24 @@ public class HealthBarOfPlayer : MonoBehaviour, IDameage
 {
     [SerializeField] protected DataPlayer _dataPlayer;
     [SerializeField] protected Image _fill;
-
-    [SerializeField] protected string _name;
+    [SerializeField] protected GameObject maxScore;
+    [SerializeField] protected Text _scoreText;
+    [SerializeField] protected Transform health;
     private void Start()
     {
         this.UpdateHealthBar();
     }
+
+    private void Update()
+    {
+        this.HealthNoRotate();  
+    }
+
+    protected void HealthNoRotate()
+    {
+        health.localScale = new Vector3(0.005f / transform.localScale.x, 0.005f / transform.localScale.y, 1);
+    }
+
     public void TakeDamage(float dame)
     {
         _dataPlayer.currentHp -= dame;
@@ -22,16 +34,27 @@ public class HealthBarOfPlayer : MonoBehaviour, IDameage
             Die();
         }
     }
-
+    
     protected void Die()
     {
-        Debug.Log("Player is die");
-        SceneManager.LoadScene(_name);
-        _dataPlayer.currentHp = _dataPlayer.maxHp;
+        TimerManager.Instance.ReturnGame();
+        float savedTime = PlayerPrefs.GetFloat("SavedTime", 0);
+
+        int min = Mathf.FloorToInt(savedTime / 60);
+        int sec = Mathf.FloorToInt(savedTime % 60);
+
+        _scoreText.text = string.Format("{0:00} : {1:00}", min, sec);
+           
+        maxScore.SetActive(true);
+        Time.timeScale = 0;
+        
+  
     }
 
     protected void UpdateHealthBar()
     {
         _fill.fillAmount = _dataPlayer.currentHp / _dataPlayer.maxHp;
     }
+
+    
 }

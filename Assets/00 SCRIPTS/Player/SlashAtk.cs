@@ -24,6 +24,7 @@ public class SlashAtk : CheckRangeAtk
         if (enemy != null)
         {
             GameObject slash = ObjectPooling.Instance.GetObject(_slashPrefab.gameObject);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.slashClip);
             slash.SetActive(true);
             slash.transform.position = enemy.transform.position;
 

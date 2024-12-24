@@ -5,11 +5,9 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] protected float _speed;
-    protected Rigidbody2D _rigi;
     protected Animator _animator;
     private void Start()
     {
-        _rigi = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
 
@@ -21,9 +19,8 @@ public class EnemyController : MonoBehaviour
 
     protected void MoveToPlayer()
     {
-        Vector2 distance = GameManager.insantce.Player.transform.position - this.transform.position;
-
-        _rigi.velocity = distance * _speed;
+        this.transform.position = Vector3.MoveTowards(this.transform.position,
+            GameManager.insantce.Player.transform.position, _speed * Time.deltaTime);
         _animator.SetBool("Run", false);
 
     }

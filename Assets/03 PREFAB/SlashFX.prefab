@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78baa89351a2f7e468e98d87f15b9fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkRange: 3
+  atkRange: 1.9
   _enemy:
     serializedVersion: 2
     m_Bits: 128
@@ -137,4 +137,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6baa7a83f6278a498a4debff0d52823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 3
+  _lifeTime: 0.5
