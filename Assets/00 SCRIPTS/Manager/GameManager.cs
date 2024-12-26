@@ -61,9 +61,24 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        GameObject enemy = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
-        enemy.transform.position = newPos;
-        enemy.SetActive(true);
+        if(ExpManager.Instance.Level >= 3)
+        {
+            GameObject enemy1 = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
+            enemy1.transform.position = newPos;
+            enemy1.SetActive(true);
+
+
+            GameObject enemy2 = ObjectPooling.Instance.GetObject(_enemyPrefab[1].gameObject);
+            enemy2.transform.position = newPos;
+            enemy2.SetActive(true);
+        }
+        else
+        {
+            GameObject enemy1 = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
+            enemy1.transform.position = newPos;
+            enemy1.SetActive(true);
+        }
+        
     }
 
     protected IEnumerator EnemySpawnAfterTime()
