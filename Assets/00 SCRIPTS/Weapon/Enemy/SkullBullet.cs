@@ -15,24 +15,13 @@ public class SkullBullet : MonoBehaviour
 
     private void Update()
     {
-        this.DirectionAndMoveToPlayer();
+        this.MoveDirToPlayer();
     }
 
 
 
-    protected void DirectionAndMoveToPlayer()
+    protected void MoveDirToPlayer()
     {
-        float dir = GameManager.insantce.Player.transform.position.x - this.transform.position.x;
-        if (dir < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-
-        
         _rigi.velocity = direction * _speed;
     }
 }

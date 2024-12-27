@@ -1,23 +1,20 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour
+public class SwordMove : MonoBehaviour
 {
-    protected Rigidbody2D rb;
     [SerializeField] protected float _speed;
+    protected Rigidbody2D _rg;
     protected Vector2 _dir;
-
-    public void SetDir(Vector2 dir)
-    {
-        _dir = dir.normalized; 
-    }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rg = GetComponent<Rigidbody2D>();
+    }
+    public void SetDir(Vector2 dir)
+    {
+        _dir = dir.normalized;
     }
 
     private void Update()
@@ -27,6 +24,6 @@ public class BulletMove : MonoBehaviour
 
     protected void MoveBullet()
     {
-        rb.velocity = _dir * _speed; 
+        _rg.velocity = _dir * _speed;    
     }
 }

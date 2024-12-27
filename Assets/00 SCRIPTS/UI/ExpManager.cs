@@ -52,23 +52,48 @@ public class ExpManager : MonoBehaviour
         {
             StartCoroutine(LevelUpAfterTime());
         }
-        if(level == 3)
+        if(level == 5)
         {
-            //
+            StartCoroutine(LevelUpAfterTime2());
         }
     }
 
 
     protected IEnumerator LevelUpAfterTime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         newSkill.SetActive(true);
         Time.timeScale = 0;
+        StartCoroutine(SkillAfterTime());
+    }
+
+    protected IEnumerator SkillAfterTime()
+    {
+        yield return new WaitForSeconds(0.5f);
         GameObject player = GameManager.insantce.Player;
         if (player != null)
         {
             NormalAtk normal = player.GetComponent<NormalAtk>();
             normal.enabled = true;
+        }
+    }
+
+    protected IEnumerator LevelUpAfterTime2()
+    {
+        yield return new WaitForSeconds(0.1f);
+        newSkill.SetActive(true);
+        Time.timeScale = 0;
+        StartCoroutine(SkillAfterTime2());
+    }
+
+    protected IEnumerator SkillAfterTime2()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject player = GameManager.insantce.Player;
+        if (player != null)
+        {
+            BulletExplosionAtk bullet = player.GetComponent<BulletExplosionAtk>();
+            bullet.enabled = true;
         }
     }
     public void Resume()

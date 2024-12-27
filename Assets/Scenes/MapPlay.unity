@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 251262634}
   - component: {fileID: 251262635}
   - component: {fileID: 251262636}
+  - component: {fileID: 251262637}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -493,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d518dcca0a1ff4fb92e3395488055a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkRange: 5
+  _atkRange: 6
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -511,12 +512,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54675f499390de645aefed64f2945704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkRange: 9
+  _atkRange: 8
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   _bulletPrefab: {fileID: 8433384701088032149, guid: b9fd214a1b072784da574393674e4ca4, type: 3}
-  _atkSpeed: 2
+  _atkSpeed: 1.5
+--- !u!114 &251262637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251262626}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd9fbda8dfd1ad448a9e7f74e4a086d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _atkRange: 10
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _swordBullet: {fileID: 7944503145096868125, guid: 37bae56812afec94b9cbc8c0f8fba7a0, type: 3}
+  _atkSpeed: 4
 --- !u!1 &271998640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1307,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3177,6 +3196,8 @@ MonoBehaviour:
   bgClip: {fileID: 8300000, guid: 82c1502c0fa9d5c4c8fa61686c5beff1, type: 3}
   slashClip: {fileID: 8300000, guid: 25a6c9c28c49a0b4d84b7256b13af421, type: 3}
   fireClip: {fileID: 8300000, guid: aa95eb41ee6235d458a197f416261621, type: 3}
+  fireClip2: {fileID: 8300000, guid: 0de44f02de14e1e41975f4353d5f4e50, type: 3}
+  explosion: {fileID: 8300000, guid: c7d71a30db0b8954fb090496f5b8a212, type: 3}
 --- !u!4 &1538153395
 Transform:
   m_ObjectHideFlags: 0
@@ -4216,7 +4237,7 @@ MonoBehaviour:
   m_Follow: {fileID: 251262630}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
