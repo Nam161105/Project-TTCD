@@ -6,14 +6,11 @@ public class GameManager : MonoBehaviour
 {
     protected static GameManager Instance;
     public static GameManager insantce => Instance;
-
-    [SerializeField] protected GameObject _player;
+    [SerializeField] protected float _minRandom;
+    [SerializeField] protected float _maxRandom;
     [SerializeField] protected List<GameObject> _enemyPrefab = new List<GameObject>();
+    [SerializeField] protected GameObject _player;
     public GameObject Player => _player;
-    
-
-    [SerializeField] protected int _minRandom;
-    [SerializeField] protected int _maxRandom;
 
     private void Awake()
     {
@@ -61,7 +58,22 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        if(ExpManager.Instance.Level >= 3)
+        if(ExpManager.Instance.Level >= 5)
+        {
+            GameObject enemy1 = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
+            enemy1.transform.position = newPos;
+            enemy1.SetActive(true);
+
+
+            GameObject enemy2 = ObjectPooling.Instance.GetObject(_enemyPrefab[1].gameObject);
+            enemy2.transform.position = newPos;
+            enemy2.SetActive(true);
+
+            GameObject enemy3 = ObjectPooling.Instance.GetObject(_enemyPrefab[2].gameObject);
+            enemy3.transform.position = newPos;
+            enemy3.SetActive(true);
+        }
+        else if(ExpManager.Instance.Level >= 3)
         {
             GameObject enemy1 = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);
             enemy1.transform.position = newPos;

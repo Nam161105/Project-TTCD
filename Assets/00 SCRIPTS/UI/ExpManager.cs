@@ -12,11 +12,11 @@ public class ExpManager : MonoBehaviour
     [SerializeField] protected float currentExp;
     [SerializeField] protected float maxExp;
     [SerializeField] protected Text levelText;
-    protected int level = 1;
-    public int Level => level;
     [SerializeField] protected Image fillExp;
     [SerializeField] protected GameObject newSkill;
-    
+    protected int level = 1;
+    public int Level => level;
+
 
     private void Awake()
     {

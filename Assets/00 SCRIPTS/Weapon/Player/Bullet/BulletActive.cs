@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletActive : MonoBehaviour
+public class BulletActive : DeactiveBase
 {
-    [SerializeField] protected float _lifeTime;
 
-    private void OnEnable()
-    {
-        StartCoroutine(DeactiveAfterTime());
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -18,9 +13,4 @@ public class BulletActive : MonoBehaviour
         }
     }
 
-    protected IEnumerator DeactiveAfterTime()
-    {
-        yield return new WaitForSeconds(_lifeTime);
-        this.gameObject.SetActive(false);
-    }
 }

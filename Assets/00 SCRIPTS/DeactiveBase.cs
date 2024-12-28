@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionActive : MonoBehaviour
+public class DeactiveBase : MonoBehaviour
 {
     [SerializeField] protected float _lifeTime;
 
     private void OnEnable()
     {
-        StartCoroutine(ExplosionDeactive());
+        StartCoroutine(DeactiveAfterTime());
     }
 
-    protected IEnumerator ExplosionDeactive()
+    protected virtual IEnumerator DeactiveAfterTime()
     {
         yield return new WaitForSeconds(_lifeTime);
         this.gameObject.SetActive(false);

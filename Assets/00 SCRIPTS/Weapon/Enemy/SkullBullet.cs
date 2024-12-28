@@ -6,11 +6,11 @@ public class SkullBullet : MonoBehaviour
 {
     [SerializeField] protected float _speed;
     protected Rigidbody2D _rigi;
-    protected Vector2 direction;
+    protected Vector3 direction;
     private void Start()
     {
         _rigi = GetComponent<Rigidbody2D>();
-        direction = (GameManager.insantce.Player.transform.position - this.transform.position).normalized;
+        direction = GameManager.insantce.Player.transform.position - this.transform.position;
     }
 
     private void Update()

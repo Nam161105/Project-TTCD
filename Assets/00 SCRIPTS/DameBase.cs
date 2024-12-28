@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionDame : MonoBehaviour
+public class DameBase : MonoBehaviour
 {
-
     [SerializeField] protected float dame;
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            IDameage isCanDmg = collision.gameObject.GetComponent<IDameage>();  
+            IDameage isCanDmg = collision.GetComponent<IDameage>();
             if (isCanDmg != null)
             {
                 isCanDmg.TakeDamage(dame);

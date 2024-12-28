@@ -535,7 +535,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _swordBullet: {fileID: 7944503145096868125, guid: 37bae56812afec94b9cbc8c0f8fba7a0, type: 3}
-  _atkSpeed: 4
+  _atkSpeed: 5
 --- !u!1 &271998640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,12 +2509,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdbc978cb9c61f4bb5526abefc2e7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 251262626}
+  _minRandom: 0.5
+  _maxRandom: 2
   _enemyPrefab:
-  - {fileID: 4422267381608301510, guid: 1a1faa5d470c2f5458c160e0acd429c6, type: 3}
-  - {fileID: 3546268768305371243, guid: 8eae3a4121e21d6488f467ff3cd17c4b, type: 3}
-  _minRandom: 1
-  _maxRandom: 3
+  - {fileID: 8268583741741075171, guid: 1a1faa5d470c2f5458c160e0acd429c6, type: 3}
+  - {fileID: 7778084840590198477, guid: 8eae3a4121e21d6488f467ff3cd17c4b, type: 3}
+  - {fileID: 2653119466664005086, guid: 589b3a8b4875c1542a86ebc710d1e74a, type: 3}
+  _player: {fileID: 251262626}
 --- !u!4 &1250712701
 Transform:
   m_ObjectHideFlags: 0

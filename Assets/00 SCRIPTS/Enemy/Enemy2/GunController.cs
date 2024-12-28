@@ -9,14 +9,17 @@ public class GunController : MonoBehaviour
     protected float countDownAtk;
 
 
-    public void Damer()
+    public void Shoot()
     {
         countDownAtk -= Time.deltaTime;
         if(countDownAtk > 0)
         {
             return;
         }
-        Instantiate(gun, this.transform.position, Quaternion.identity);
+        GameObject skullBullet = ObjectPooling.Instance.GetObject(gun.gameObject);
+        skullBullet.SetActive(true);
+        skullBullet.transform.position = this.transform.position;
+        skullBullet.transform.rotation = Quaternion.identity;
         countDownAtk = time;
     }
 }
