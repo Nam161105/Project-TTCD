@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour, IDameage
+
+//Base chung cua enemy
+public abstract class EnemyBase : MonoBehaviour, IDameage //Class triu tuong
 {
     [SerializeField] protected float _speed;
     [SerializeField] protected float maxHp;
     [SerializeField] protected float currentHp;
     [SerializeField] protected int dame;
+    [SerializeField] protected float _lifeTime;
     protected Animator _animator;
 
     protected virtual void OnEnable()
@@ -30,7 +33,7 @@ public abstract class EnemyBase : MonoBehaviour, IDameage
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position,
             GameManager.insantce.Player.transform.position, _speed * Time.deltaTime);
-        _animator.SetBool("Run", false);
+        _animator.SetTrigger(CONSTANT._runAni);
 
     }
 
@@ -57,6 +60,13 @@ public abstract class EnemyBase : MonoBehaviour, IDameage
 
     protected virtual void Die()
     {
+        _animator.SetTrigger(CONSTANT._dieAni);
+        StartCoroutine(DieAfterTime());
+    }
+
+    protected virtual IEnumerator DieAfterTime()
+    {
+        yield return new WaitForSeconds(_lifeTime);
         ExpManager.Instance.LevelSystem();
         this.gameObject.SetActive(false);
     }
@@ -64,7 +74,7 @@ public abstract class EnemyBase : MonoBehaviour, IDameage
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(CONSTANT._playerTag))
         {
             IDameage iscanDmg = collision.gameObject.GetComponent<IDameage>();
             if (iscanDmg != null)

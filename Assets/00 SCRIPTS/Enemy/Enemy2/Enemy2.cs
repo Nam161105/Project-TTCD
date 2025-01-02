@@ -14,11 +14,11 @@ public class Enemy2 : EnemyBase
         {
             this.transform.position = Vector3.Lerp(this.transform.position,
             GameManager.insantce.Player.transform.position, _speed * Time.deltaTime);
-            _animator.SetBool("Run2", true);
+            _animator.SetTrigger(CONSTANT._runAni);
         }
         else if (dis.sqrMagnitude <= 50 - 0.5f)
         {
-            _animator.SetBool("Run2", false);
+            _animator.SetTrigger(CONSTANT._idleAni);
             _gunController.Shoot();
         }
     }

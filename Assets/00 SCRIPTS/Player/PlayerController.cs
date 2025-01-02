@@ -28,13 +28,14 @@ public class PlayerController : MonoBehaviour
 
     protected void InputPlayer()
     {
-        _movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");
+        //Su dung vat ly de di chuyen Player
+        _movement.x = Input.GetAxisRaw(CONSTANT._horizontalString);
+        _movement.y = Input.GetAxisRaw(CONSTANT._verticalString);
         _movement.Normalize();
-        _animator.SetBool("Run", true);
+        _animator.SetBool(CONSTANT._runAni, true);
         if (_rigi.velocity == Vector2.zero)
         {
-            _animator.SetBool("Run", false);
+            _animator.SetBool(CONSTANT._runAni, false);
         }
         this.Turning();
     }

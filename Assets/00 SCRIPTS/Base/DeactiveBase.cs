@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Base DeActive cua gameobject
 public class DeactiveBase : MonoBehaviour
 {
     [SerializeField] protected float _lifeTime;

@@ -41,7 +41,7 @@ public class TimerManager : MonoBehaviour
 
     public void ReturnGame()
     {
-        isPaused = false;
-        PlayerPrefs.SetFloat("SavedTime", time);
+        isPaused = false; //Dung thoi gian game lai
+        PlayerPrefs.SetFloat("SavedTime", time); //Luu lai thoi gian game
     }
 }

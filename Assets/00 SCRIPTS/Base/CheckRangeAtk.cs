@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Base cua tinh khoang cach tan cong
 public class CheckRangeAtk : MonoBehaviour
 {
     [SerializeField] protected float _atkRange;
@@ -23,7 +24,9 @@ public class CheckRangeAtk : MonoBehaviour
         }
         return enemy;
     }
-    protected void OnDrawGizmosSelected()
+
+
+    protected void OnDrawGizmosSelected() //Tao 1 hinh tron tren editor
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _atkRange);

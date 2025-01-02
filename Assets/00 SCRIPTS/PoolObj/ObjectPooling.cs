@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Quan ly chung pool chua cac gamobject can tai su dung
 public class ObjectPooling : MonoBehaviour
 {
     protected static ObjectPooling instance;

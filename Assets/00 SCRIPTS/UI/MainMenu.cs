@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void LoadMap()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneLoading.Instance.SceneLoad(1);
     }
 
     public void Exit()

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     protected void RandomSpawnEnemy()
     {
-        Vector2 screenSize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 screenSize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); //Tinh toa do man hinh
         Vector3 cameraPosition = Camera.main.transform.position;
         Vector2 newPos = Vector2.zero;
 
@@ -40,24 +40,25 @@ public class GameManager : MonoBehaviour
 
         switch (choose)
         {
-            case 0: 
+            case 0: //Spawn ben trai man hinh
                 newPos.x = cameraPosition.x - screenSize.x - 0.5f;
                 newPos.y = Random.Range(cameraPosition.y - screenSize.y, cameraPosition.y + screenSize.y);
                 break;
-            case 1:
+            case 1: //Spawn ben phai man hinh
                 newPos.x = cameraPosition.x + screenSize.x + 0.5f;
                 newPos.y = Random.Range(cameraPosition.y - screenSize.y, cameraPosition.y + screenSize.y);
                 break;
-            case 2: 
+            case 2: //Spawn ben tren man hinh
                 newPos.x = Random.Range(cameraPosition.x - screenSize.x, cameraPosition.x + screenSize.x);
                 newPos.y = cameraPosition.y + screenSize.y + 0.5f;
                 break;
-            case 3: 
+            case 3: //Spawn ben duoi man hinh
                 newPos.x = Random.Range(cameraPosition.x - screenSize.x, cameraPosition.x + screenSize.x);
                 newPos.y = cameraPosition.y - screenSize.y - 0.5f;
                 break;
         }
 
+        //Quan ly sinh enemy o cac level khac nhau
         if(ExpManager.Instance.Level >= 5)
         {
             GameObject enemy1 = ObjectPooling.Instance.GetObject(_enemyPrefab[0].gameObject);

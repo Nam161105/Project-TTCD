@@ -20,6 +20,7 @@ public class GunController : MonoBehaviour
         skullBullet.SetActive(true);
         skullBullet.transform.position = this.transform.position;
         skullBullet.transform.rotation = Quaternion.identity;
+
         countDownAtk = time;
     }
 }

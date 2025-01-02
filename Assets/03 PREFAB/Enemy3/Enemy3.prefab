@@ -187,3 +187,4 @@ MonoBehaviour:
   maxHp: 25
   currentHp: 25
   dame: 15
+  _lifeTime: 0.5

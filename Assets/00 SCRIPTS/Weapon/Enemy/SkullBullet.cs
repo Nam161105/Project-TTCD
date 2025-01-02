@@ -10,7 +10,7 @@ public class SkullBullet : MonoBehaviour
     private void Start()
     {
         _rigi = GetComponent<Rigidbody2D>();
-        direction = GameManager.insantce.Player.transform.position - this.transform.position;
+        direction = (GameManager.insantce.Player.transform.position - this.transform.position).normalized;
     }
 
     private void Update()

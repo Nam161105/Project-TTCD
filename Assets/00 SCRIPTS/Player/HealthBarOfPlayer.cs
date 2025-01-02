@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
+
 public class HealthBarOfPlayer : MonoBehaviour, IDameage
 {
     [SerializeField] protected DataPlayer _dataPlayer;
     [SerializeField] protected Image _fill;
-    [SerializeField] protected GameObject maxScore;
-    [SerializeField] protected Text _scoreText;
-    [SerializeField] protected Transform health;
+    [SerializeField] protected GameObject _boardTimeOfPlayer;
+    [SerializeField] protected Text _timeText;
+    [SerializeField] protected Transform _health;
     private void Start()
     {
         this.UpdateHealthBar();
@@ -20,9 +21,9 @@ public class HealthBarOfPlayer : MonoBehaviour, IDameage
         this.HealthNoRotate();  
     }
 
-    protected void HealthNoRotate()
+    protected void HealthNoRotate() //Giu nguyen thanh mau khong bi doi scale theo thang cha(Player)
     {
-        health.localScale = new Vector3(0.005f / transform.localScale.x, 0.005f / transform.localScale.y, 1);
+        _health.localScale = new Vector3(0.005f / transform.localScale.x, 0.005f / transform.localScale.y, 1);
     }
 
     public void TakeDamage(float dame)
@@ -43,15 +44,15 @@ public class HealthBarOfPlayer : MonoBehaviour, IDameage
         int min = Mathf.FloorToInt(savedTime / 60);
         int sec = Mathf.FloorToInt(savedTime % 60);
 
-        _scoreText.text = string.Format("{0:00} : {1:00}", min, sec);
+        _timeText.text = string.Format("{0:00} : {1:00}", min, sec);
            
-        maxScore.SetActive(true);
-        Time.timeScale = 0;
+        _boardTimeOfPlayer.SetActive(true);
+        Time.timeScale = 0; //Dung thoi gian cua game lai
         
   
     }
 
-    protected void UpdateHealthBar()
+    protected void UpdateHealthBar() //Update imgae theo currentHp hien tai
     {
         _fill.fillAmount = _dataPlayer.currentHp / _dataPlayer.maxHp;
     }

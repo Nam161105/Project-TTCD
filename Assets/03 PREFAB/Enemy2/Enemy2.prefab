@@ -198,6 +198,7 @@ MonoBehaviour:
   maxHp: 25
   currentHp: 25
   dame: 20
+  _lifeTime: 0.6
   _gunController: {fileID: 8667997614807726404}
 --- !u!1 &7952975331699863939
 GameObject:
