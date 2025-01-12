@@ -10,13 +10,13 @@ public class Enemy2 : EnemyBase
     {
         Vector2 dis = GameManager.insantce.Player.transform.position - this.transform.position;
 
-        if (dis.sqrMagnitude > 50 + 0.5f)
+        if (dis.sqrMagnitude > 50 + 0.1f)
         {
             this.transform.position = Vector3.Lerp(this.transform.position,
             GameManager.insantce.Player.transform.position, _speed * Time.deltaTime);
             _animator.SetTrigger(CONSTANT._runAni);
         }
-        else if (dis.sqrMagnitude <= 50 - 0.5f)
+        else if (dis.sqrMagnitude <= 50 - 0.1f)
         {
             _animator.SetTrigger(CONSTANT._idleAni);
             _gunController.Shoot();
