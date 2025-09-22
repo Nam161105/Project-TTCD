@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     protected Rigidbody2D _rigi;
     protected Vector2 _movement;
     protected Animator _animator;
+    
 
     void Start()
     {
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
         this.InputPlayer();
 
     }
+
+
 
     private void FixedUpdate()
     {
